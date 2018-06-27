@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>簡易統計量計算器</title> 
+<style type="text/css">
+
+body{background-color:#00FFFF;}
+h1{text-align:center;font-size:60px;font-family:Microsoft JhengHei;}
+h2{text-align:center;font-size:40px;color:#00008B;font-weight:bold;font-family:Microsoft JhengHei;}
+h3{text-align:center;font-size:40px;color:#00008B;font-weight:bold;font-family:Microsoft JhengHei;}
+p{text-align:center;font-size:20px;color:rgb(43, 90, 49);font-weight:bold;font-family:Microsoft JhengHei;}
+a{font-size:20px;color:rgb(107, 66, 20);font-weight:bold;font-family:Microsoft JhengHei;}
+
+</style>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function()
+    {
+      $("#hide").click(function()
+      {
+        $("a").hide();
+      });
+      $("#show").click(function()
+      {
+        $("a").show();
+      });
+    });
+</script>
+</head>
+
+<body>
+<h1>此網站可以幫助您計算Z值與T值</h1>
+<h2>計算抽樣Z值</h2>
+
+
+<form>
+<p>輸入樣本平均數<input type = "text" id = "1">輸入母體平均數<input type = "text" id = "2">輸入母體標準差<input type = "text" id = "3">輸入抽樣個數<input type = "text" id = "4"></p>
+<p><input type = "button" value = "開始計算" onClick = "start()"> <input type = "button" value = "歸零" onClick = "restart()"></p>
+<p>您求出的z值<input type = "text" id = "5" ></p>
+</form>
+
+<script type="text/javascript"> 
+ 
+  function start()
+  {
+    var x = document.getElementById("1").value;
+    var μ = document.getElementById("2").value;
+    var σ = document.getElementById("3").value;
+    var n = document.getElementById("4").value;
+    var ans = [(x-μ)/(σ/Math.sqrt(n))];
+    document.getElementById("5").value = ans;
+  }
+  function restart()
+  {
+    document.getElementById("1").value = "";
+    document.getElementById("2").value = "";
+    document.getElementById("3").value = "";
+    document.getElementById("4").value = "";
+    document.getElementById("5").value = "";
+  }
+  
+</script>
+  
+<h3>計算兩樣本差的T值</h3>
+
+<form>
+<p>輸入樣本1平均數<input type = "text" id = "6">輸入樣本1標準差<input type = "text" id = "7">輸入樣本1個數<input type = "text" id = "8"></p>
+<p>輸入樣本2平均數<input type = "text" id = "9">輸入樣本2標準差<input type = "text" id = "10">輸入樣本2個數<input type = "text" id = 11></p>
+<p>母體變異數相等<input type="radio" id ="same">母體變異數不相等<input type="radio" id ="unsame"></p>
+<p><input type = "button" value = "開始計算" onClick = "start2()"> <input type = "button" value = "歸零" onClick = "restart2()"></p>
+<p>您求出的t值<input type = "text" id = "12" ></p>
+</form>
+
+<script type="text/javascript"> 
+
+  function start2()
+  {
+      var radio1 = document.getElementById("same").checked;
+      var radio2 = document.getElementById("unsame").checked;
+      document.getElementById("same").onClick = "foo2()"
+      if((radio1 == "")&&(radio2 == ""))
+      {
+        alert("請選母體變異數有沒有相等!");
+      }    
+      else  if((radio1 == "1")&&(radio2 == ""))
+      { var x1 = document.getElementById("6").value;
+        var s1 = document.getElementById("7").value;
+        var n1 = document.getElementById("8").value;
+        var x2 = document.getElementById("9").value;
+        var s2 = document.getElementById("10").value;
+        var n2 = document.getElementById("11").value;
+        var df = +n1 + +(n2)-2;
+        var st =Math.sqrt([(n1-1)*s1*s1+(n2-1)*s2*s2]/df)*Math.sqrt((1/n1)+(1/n2));
+        var ans =(x1-x2)/st;
+        document.getElementById("12").value = ans;
+      }
+      else  if((radio1 == "0")&&(radio2 == "1"))  
+      {
+        var x1 = document.getElementById("6").value;
+        var s1 = document.getElementById("7").value;
+        var n1 = document.getElementById("8").value;
+        var x2 = document.getElementById("9").value;
+        var s2 = document.getElementById("10").value;
+        var n2 = document.getElementById("11").value; 
+        var st = Math.sqrt(+(s1*s1)/n1 + +(s2*s2)/n2);
+        var ans = (x1-x2)/st;
+        document.getElementById("12").value = ans;
+      }
+      else
+      {
+        alert("不會同時相等又不相等!");  
+      }
+  }
+
+  function restart2()
+  {
+    document.getElementById("6").value = "";
+    document.getElementById("7").value = "";
+    document.getElementById("8").value = "";
+    document.getElementById("9").value = "";
+    document.getElementById("10").value = "";
+    document.getElementById("11").value = "";
+    document.getElementById("12").value = "";
+    document.getElementById("same").checked = "";
+    document.getElementById("unsame").checked = "";
+
+  }
+
+</script>
+
+<center>
+<a href="https://www.mathsisfun.com/data/standard-normal-distribution-table.html">Z值表</a><br>
+<a href="https://www.medcalc.org/manual/t-distribution.php">T值表</a><br>
+
+<p>
+  <button id="hide">隱藏</button><button id="show">顯示</button>
+</p>
+</center>
+
+
+</body>
+</html>
