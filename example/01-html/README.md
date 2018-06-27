@@ -31,10 +31,13 @@
 
 ## 連結
 
-標記 :  a:href/img:src
+標記 :  a:href
 
-範例 : [table.htm](table.htm) -- [檢視](https://rawgit.com/cccnqu/wd106b/master/example/01-html/table.htm)
+範例 : [link](link.htm) -- [檢視](https://rawgit.com/cccnqu/wd106b/master/example/01-html/link.htm)
 
+標記 :  img:src
+
+範例 : [img](img.htm) -- [檢視](https://rawgit.com/cccnqu/wd106b/master/example/01-html/img.htm)
 
 ## 表格
 
@@ -42,11 +45,8 @@
 
 範例 : [table.htm](table.htm) -- [檢視](https://rawgit.com/cccnqu/wd106b/master/example/01-html/table.htm)
 
-
 ## 表單
 
 標記 : Form/input/textarea/select/radio
 
 範例 : [form.htm](form.htm) -- [檢視](https://rawgit.com/cccnqu/wd106b/master/example/01-html/form.htm)
-
-
